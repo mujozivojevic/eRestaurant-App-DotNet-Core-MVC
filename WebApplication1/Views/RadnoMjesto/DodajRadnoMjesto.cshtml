@@ -1,0 +1,17 @@
+﻿
+@{
+    
+        ViewData["Title"] = "DodajRadnoMjesto";
+
+        var radnaMjesta = (List<RadnoMjesto>)ViewData["radnaMjesta-kljuc"];
+    
+}
+
+    <h4>Dodavanje novog radnog mjesta</h4>
+    <form action="http://localhost:9273/RadnoMjesto/DodajRadnoMjesto" method="post">
+        <label>Unesite radno mjesto: </label>
+        <input type="text" name="radnoMjestoNaziv" id="radnoMjestoNaziv" placeholder="Naziv radnog mjesta" />
+        <input type="text" name="radnoMjestoOpis" id="radnoMjestoOpis" placeholder="Opis" />
+        <input type="submit" name="dodavanje" value="Spremi" />
+    </form>
+

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Prikazi";
+
+    var gradovi = (List<Grad>)ViewData["gradovi-kljuc"];
+}
+
+<h2>Prikaz gradova</h2>
+<br><br><br>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Poštanski broj</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var k in gradovi)
+        {
+            <tr>
+                <td>@k.Naziv</td>
+                <td>@k.PostanskiBroj</td>
+                <td><a href="/Grad/Obrisi?GradId= @k.GradId">Obriši</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br>
+<h4>Dodavanje novog grada</h4>
+<form action="http://localhost:9273/Grad/DodajGrad" method="post">
+    <label>Unesite naziv grada: </label>
+    <input type="text" name="gradNaziv"  id="gradNaziv" placeholder="Naziv grada" />
+    <input type="text" name="gradPostanskiBroj" id="gradPostanskiBroj" placeholder="Postanski broj" />
+    <input type="submit" name="dodavanje" value="Spremi"/>
+</form>
+
+

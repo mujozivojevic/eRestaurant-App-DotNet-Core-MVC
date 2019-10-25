@@ -1,0 +1,54 @@
+﻿@model WebApplication1.Areas.ModulAdmin.ViewModels.Obavijest.ObavijestListVM
+@{
+    ViewData["Title"] = "Obavijest";
+    int br = 0;
+}
+
+<div class="row">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Obavijesti</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="datatable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>RB</th>
+                        <th>Naziv</th>
+                        <th>Sadržaj</th>
+                        <th>Datum</th>
+                        <th>Objavio</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ foreach (var o in Model.htmlRows)
+                        {
+                            <tr>
+                                @{
+                                    br++;
+                                }
+                                <td>@br</td>
+                                <td>@o.Naziv</td>
+                                <td>@o.Sadrzaj</td>
+                                <td>@o.Datum</td>
+                                <td>@o.ImePrezime</td>
+                                <td class="text-center">
+                                    <a class="btn btn-info btn-xs" asp-controller="Obavijest" asp-action="Uredi" asp-route-id="@o.ObavijestId"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Uredi</a>
+                                    <a class="btn btn-danger btn-xs" asp-controller="Obavijest" asp-action="Obrisi" asp-route-id="@o.ObavijestId" OnClick="confirm('Obrisati obavijest?')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Obriši</a>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+        <a asp-controller="Obavijest" asp-action="Dodaj" class="btn btn-primary"> Dodaj novu obavijest </a>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,24 @@
+﻿@using WebApplication1.Models.ViewModels
+@model RezervacijaDodajVM
+@{
+    ViewData["Title"] = "DodajForm";
+}
+
+<h2>DodajForm</h2>
+
+
+<form action="/Rezervacija/DodajSave" method="post" style="width:50%">
+    <label>Gost</label>
+    <select asp-for="Narucilac.NarucilacId" asp-items="Model.narucilacLista"  class="form-control" ></select>
+    <br />
+
+    <label>Datum rezervacije</label>
+    <input asp-for="Rezervacija.DatumRezervacije" class="form-control" />
+
+    <label>Broj stola</label>
+    <select asp-for="StolMjesta.Id" asp-items="Model.stolLista"  class="form-control"></select><br />
+
+
+    <br />
+    <button class="btn btn-success" type="submit">Potvrdi</button>
+</form>

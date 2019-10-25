@@ -1,0 +1,20 @@
+﻿@using WebApplication1.Models.ViewModels
+@model SastojciDodajVM
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+<h2>Dodaj</h2>
+
+<form action="/Sastojci/DodajSave" method="post" style="width:50%">
+    <label>Naziv</label>
+    <input asp-for="Sastojci.Naziv" class="form-control" />
+
+    <label>Opis</label>
+    <input asp-for="Sastojci.Opis" class="form-control" />
+
+
+    <br />
+    <button class="btn btn-success" type="submit">Potvrdi</button>
+</form>
+

@@ -1,0 +1,46 @@
+﻿@model WebApplication1.Areas.ModulAdmin.ViewModels.Narudzba.NarudzbaDetaljiVM
+@{
+    ViewData["Title"] = "Detalji";
+    int br = 0;
+}
+
+
+
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>@Model.ImePrezime</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="datatable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>RB</th>
+                        <th>Jelo</th>
+                        <th>Cijena</th>
+                        <th>Količina</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ foreach (var ns in Model.htmlRows)
+                        {
+                    <tr>
+                        @{
+                            br++;
+                        }
+                        <td>@br</td>
+                        @foreach (var j in ns.Jela)
+                        {
+                            <td>@j.Naziv</td>
+                            <td>@j.Cijena</td>
+                        }
+                        <td>@ns.Kolicina</td>
+
+                    </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>

@@ -1,0 +1,53 @@
+﻿@using WebApplication1.Models.ViewModels
+@model SastojciPrikaziVM
+@{
+    ViewData["Title"] = "Prikazi";
+    int br = 0;
+
+    string porukaAdd = TempData["porukaAdd"] as string;
+    string porukaDelete = TempData["porukaDelete"] as string;
+
+}
+@if (porukaAdd != null)
+{
+    <div class="alert alert-success" role="alert">
+        <strong>Sastojak dodan</strong> @porukaAdd
+    </div>
+}
+@if (porukaDelete != null)
+{
+    <div class="alert alert-success" role="alert">
+        <strong>Rezervacija obrisana</strong> @porukaDelete
+    </div>
+}
+
+
+<h2>Prikazi</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>RB</th>
+            <th>Naziv</th>
+            <th>Opis</th>
+            <th>Obriši</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SastojciPrikaziVM.Row s in Model.htmlRows)
+        {
+            <tr>
+                @{ br++; }
+                <td>@br</td>
+                <td>@s.Naziv</td>
+                <td>@s.Opis</td>
+                <td><a class="btn btn-danger" href="/sastojci/obrisi?=@s.Id">Obrisi</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Sastojci/DodajForm/" class="btn btn-success" ajax-poziv="da" ajax-rezultat="ajaxDiv"> Dodaj Novi </a>
+
+<div id="ajaxDiv" style="border: solid 1px black;">
+</div>

@@ -1,0 +1,63 @@
+﻿@model WebApplication1.Areas.ModulAdmin.ViewModels.Rezervacija.RezervacijeListVM
+
+@{
+    ViewData["Title"] = "Prikazi";
+    var porukaDelete = TempData["porukaDelete"] as string;
+    int br = 0;
+}
+
+
+
+@if (porukaDelete != null)
+{
+    <div class="alert alert-success" role="alert">
+        <strong>Rezervacija obrisana</strong> @porukaDelete
+    </div>
+}
+
+    <div class="row">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Naručioci</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="datatable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>RB</th>
+                            <th>Ime gosta</th>
+                            <th>Događaj</th>
+                            <th>Datum evidencije</th>
+                            <th>Datum rezervacije</th>
+                            <th>Broj mjesta</th>
+                            <th>Obriši</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model.htmlRows)
+                        {
+
+                            <tr>
+                                @{ br++;}
+                                <td>@br</td>
+                                <td>@x.ImePrezime</td>
+                                <td>@x.Naziv</td>
+                                <td>@x.DatumEvidencije</td>
+                                <td>@x.DatumRezervacije</td>
+                                <td>@x.BrojMjesta</td>
+                                <td class="text-center">
+                                    <a class="btn btn-info btn-xs" asp-area="ModulAdmin" asp-controller="Rezervacija" asp-action="Uredi" asp-route-id="@x.RezervacijaId"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Uredi</a>
+                                    <a class="btn btn-danger btn-xs" OnClick="confirm('Obrisati rezervaciju?')" asp-area="ModulAdmin" asp-controller="Rezervacija" asp-action="Obrisi" asp-route-id="@x.RezervacijaId"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Obriši</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <a asp-controller="Rezervacija" asp-action="DodajGost" class="btn btn-primary"> Dodaj novu rezervaciju </a>
+
+        </div>
+
+    </div>

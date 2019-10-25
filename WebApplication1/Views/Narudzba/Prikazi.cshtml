@@ -1,0 +1,49 @@
+﻿@using WebApplication1.Models
+@using WebApplication1.EF
+@{
+
+    List<Narucilac> narucioci = (List<Narucilac>)ViewData["narucilac"];
+
+    List<Narudzba> narudzbe = (List<Narudzba>)ViewData["narudzba"];
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Online restoran</title>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <br /> <br /> <br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Datum narudzbe</th>
+                <th>Narucilac</th>                
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var k in narudzbe)
+            {
+                <tr>
+                    <td>@k.DatumNarudzbe</td>
+                    <td>@k.Narucilac.ImePrezime</td>                  
+                    <td><a href="/Narudzba/Uredi/@k.Id">Uredi</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

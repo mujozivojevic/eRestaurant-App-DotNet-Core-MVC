@@ -1,0 +1,47 @@
+﻿@model WebApplication1.Models.ViewModels.RezervacijaPrikaziVM
+
+@{
+    ViewData["Title"] = "Prikazi";
+    var porukaDelete = TempData["porukaDelete"] as string;
+    int br = 0;
+}
+
+<h2>Rezervacije</h2>
+
+@if (porukaDelete != null)
+{
+    <div class="alert alert-success" role="alert">
+        <strong>Rezervacija obrisana</strong> @porukaDelete
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>RB</th>
+            <th>Ime gosta</th>
+            <th>Datum evidencije</th>
+            <th>Datum rezervacije</th>
+            <th>Broj mjesta</th>
+            <th>Obriši</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.htmlRows)
+        {
+
+            <tr>
+                @{ br++;}
+                <td>@br</td>
+                <td>@x.Narucilac.ImePrezime</td>
+                <td>@x.DatumEvidencije</td>
+                <td>@x.DatumRezervacije</td>
+                <td>@x.Stolovi.BrojMjesta</td>
+                <td><a class="btn btn-danger" href="/rezervacija/obrisi?id=@x.Id">Obrisi</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<a href="/rezervacija/DodajForm" class="btn btn-primary"> Dodaj novu rezervaciju </a>

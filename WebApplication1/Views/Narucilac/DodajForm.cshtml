@@ -1,0 +1,36 @@
+﻿@model WebApplication1.Models.ViewModels.NaruciociDodajVM
+@{
+    ViewData["Title"] = "DodajForm";
+    //var narucioci = ViewData["narucioci-kljuc"] as List<Narucilac>;
+    //var gradovi = ViewData["gradovi-kljuc"] as List<Grad>;
+
+}
+
+<h2>Dodaj narucioca</h2>
+
+<form action="/Narucilac/DodajSave" method="post" style="width:50%">
+    <label>Ime i prezime</label>
+    <input asp-for="narucilac.ImePrezime" class="form-control" />
+
+
+
+    <label>Email</label>
+    <input asp-for="narucilac.Email" class="form-control" />
+
+    <label>Telefon</label>
+    <input asp-for="narucilac.Telefon" class="form-control" />
+
+    <label>Adresa</label>
+    <input asp-for="narucilac.Adresa" class="form-control" />
+
+
+
+    <label>Grad</label><br />
+    <select asp-for="narucilac.GradId" asp-items="Model.gradLista"></select><br />
+
+    <br />
+    <button class="btn btn-success" type="submit">Potvrdi</button>
+
+</form>
+
+

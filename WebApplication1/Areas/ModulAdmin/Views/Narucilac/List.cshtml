@@ -1,0 +1,64 @@
+﻿@model WebApplication1.Areas.ModulAdmin.ViewModels.Narucilac.NarucilacListVM
+@{
+    ViewData["Title"] = "Prikazi";
+    int br = 0;
+
+}
+
+
+
+<div class="row">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Naručioci</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="datatable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>RB</th>
+                        <th>Ime i prezime</th>
+                        <th>Korisničko ime</th>
+                        <th>Email</th>
+                        <th>Telefon</th>
+                        <th>Adresa</th>
+                        <th>Grad</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ foreach (var n in Model.htmlRows)
+                        {
+                            <tr>
+                                @{
+                                    br++;
+                                }
+                                <td>@br</td>
+                                <td>@n.ImePrezime</td>
+                                <td>@n.KorisnickoIme</td>
+                                <td>@n.Email</td>
+                                <td>@n.Telefon</td>
+                                <td>@n.Adresa</td>
+                                <td>@n.GradNaziv</td>
+                                <td>
+                                    <a class="btn btn-info btn-xs" asp-controller="Narucilac" asp-action="Uredi" asp-route-id="@n.NarucilacId"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Uredi</a>
+                                    <a class="btn btn-danger btn-xs" OnClick="confirm('Obrisati naručioca?')" asp-controller="Narucilac" asp-action="Obrisi" asp-route-id="@n.NarucilacId"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Obriši</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+        <a asp-controller="Narucilac" asp-action="Dodaj" class="btn btn-primary"> Dodaj novog korisnika </a>
+
+    </div>
+
+</div>
+
+
+
+
+

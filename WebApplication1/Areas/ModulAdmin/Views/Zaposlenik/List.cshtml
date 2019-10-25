@@ -1,0 +1,74 @@
+﻿@model WebApplication1.Areas.ModulAdmin.ViewModels.Zaposlenik.ZaposlenikListVM
+
+@{
+    ViewData["Title"] = "Zaposlenici";
+    int br = 0;
+
+
+}
+
+
+
+
+    <div class="row">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Zaposlenici</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="datatable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>RB</th>
+                            <th>Ime i prezime</th>
+                            <th>Adresa</th>
+                            <th>Grad</th>
+                            <th>Radno Mjesto</th>
+                            <th>Telefon</th>
+                            <th>Email</th>
+                            <th>Datum Rodjenja</th>
+                            <th>JMBG</th>
+                            <th>Korisničko ime</th>
+                            <th>Lozinka</th>
+                            <th>Akcija</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ foreach (var z in Model.htmlRows)
+                            {
+                                <tr>
+                                    @{
+                                        br++;
+                                    }
+                                    <td>@br</td>
+                                    <td>@z.ImePrezime</td>
+                                    <td>@z.Adresa</td>
+                                    <td>@z.Grad</td>
+                                    <td>@z.RadnoMjesto</td>
+                                    <td>@z.Telefon</td>
+                                    <td>@z.Email</td>
+                                    <td>@z.DatumRodjenja</td>
+                                    <td>@z.JMBG</td>
+                                    <td>@z.KorisnickoIme</td>
+                                    <td>@z.Lozinka</td>
+                                    <td>
+                                        <a class="btn btn-info btn-xs" asp-controller="Zaposlenik" asp-action="Uredi" asp-route-id="@z.ZaposlenikId"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Uredi</a>
+                                        <a class="btn btn-danger btn-xs" OnClick="confirm('Obrisati zaposlenika?')" asp-controller="Zaposlenik" asp-action="Obrisi" asp-route-id="@z.ZaposlenikId" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Obriši</a>
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+            <a asp-controller="Zaposlenik" asp-action="Dodaj" class="btn btn-primary"> Dodaj novog zaposlenika </a>
+
+        </div>
+
+       
+    </div>
+
+

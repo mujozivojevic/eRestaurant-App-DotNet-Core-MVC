@@ -1,0 +1,61 @@
+﻿@using WebApplication1.Models.ViewModels
+@model NaruciociPrikaziVM
+@{
+    ViewData["Title"] = "Prikazi";
+    int br = 0;
+    var porukaDelete = TempData["porukaDelete"] as string;
+    var porukaSuccess = TempData["porukaSuccess"] as string;
+
+}
+
+@if (porukaDelete != null)
+{
+    <div class="alert alert-success" role="alert">
+        <strong>Well done!</strong> @porukaDelete
+    </div>
+}
+
+@if (porukaSuccess != null)
+{
+    <div class="alert alert-success" role="alert">
+        <strong>Well done!</strong> @porukaSuccess
+    </div>
+}
+
+<h2>Prikaz naručioca</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>RB</th>
+            <th>Ime i prezime</th>
+            <th>Korisničko ime</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Adresa</th>
+            <th>Grad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (NaruciociPrikaziViewModel n in Model.podaci)
+            {
+                <tr>
+                    @{
+                        br++;
+                    }
+                    <td>@br</td>
+                    <td>@n.ImePrezime</td>
+                    <td>@n.KorisnickoIme</td>
+                    <td>@n.Email</td>
+                    <td>@n.Telefon</td>
+                    <td>@n.Adresa</td>
+                    <td>@n.grad.Naziv</td>
+                    <td><a class="btn btn-danger" href="/narucilac/obrisi?id=@n.NarucilacId">Obriši</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>
+
+<a href="/Narucilac/DodajForm" class="btn btn-primary"> Dodaj Novi </a>

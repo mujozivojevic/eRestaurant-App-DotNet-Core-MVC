@@ -1,0 +1,51 @@
+﻿@model WebApplication1.Areas.ModulAdmin.ViewModels.Plata.PlataListVM
+@{
+    ViewData["Title"] = "Zaposlenik";
+    int br = 0;
+}
+
+<div class="row">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Plata</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="datatable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>RB</th>
+                        <th>Zaposlenik</th>
+                        <th>Iznos</th>
+                        <td>Mjesec</td>
+                        <th>Datum</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ foreach (var p in Model.htmlRows)
+                        {
+                            <tr>
+                                @{
+                                    br++;
+                                }
+                                <td>@br</td>
+                                <td>@p.ZaposlenikIme</td>
+                                <td>@p.Iznos</td>
+                                <td>@p.DatumMjesec</td>
+                                <td>@p.Datum</td>
+                                <td class="text-center">
+                                    <a class="btn btn-info btn-xs" asp-controller="Plata" asp-action="Uredi" asp-route-id="@p.PlataId">Uredi</a>
+                                    <a class="btn btn-danger btn-xs" asp-controller="Plata" asp-action="Obrisi" asp-route-id="@p.PlataId">Obriši</a>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+

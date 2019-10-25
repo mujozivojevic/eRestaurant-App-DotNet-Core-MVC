@@ -1,0 +1,89 @@
+﻿@model WebApplication1.Areas.ModulAdmin.ViewModels.Jelo.JeloDodajVM
+<!-- Modal -->
+
+<div class="row">
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Dodaj jelo</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br />
+            <form asp-controller="Jelo" enctype="multipart/form-data" asp-action="UrediSave" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="Naziv">
+
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input asp-for="Naziv" autofocus type="text" class="form-control" name="Naziv">
+                        <span asp-validation-for="Naziv"></span>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="vrsta">
+                        Vrsta jela:
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select asp-for="VrstaJelaId" asp-items="Model.vrstaJelaLista" class="form-control">
+                            <option value="" disabled hidden selected>(Odaberi vrstu jela)</option>
+                        </select>
+                        <span asp-validation-for="VrstaJelaId"></span>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="Cijena">
+                        Cijena
+                    </label>
+                    <div class="col-md-2 col-sm-6 col-xs-12">
+                        <input asp-for="Cijena" required="required" class="form-control" />
+                        <span asp-validation-for="Cijena"></span>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Opis: </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea asp-for="Opis" rows="3" style="resize:none" class="form-control"></textarea>
+                        <span asp-validation-for="Opis"></span>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                        Sastojci:
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select asp-for="sastojciOdabrani" asp-items="Model.sastojciLista" required class="select2_multiple form-control" multiple="multiple"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="Slika">
+                        Slika
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input asp-for="Slika" required="required" class="form-control custom-file-input" />
+                        <label class="custom-file-label">Izaberite sliku...</label>
+                    </div>
+                </div>
+                <input asp-for="JeloId" type="hidden" />
+
+                <div class="form-group">
+                    <div class="col-md-9 text-right">
+                        <button type="reset" class="btn btn-primary">Resetiraj</button>
+                        <button type="submit" class="btn btn-success">Potvrdi</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+</div>

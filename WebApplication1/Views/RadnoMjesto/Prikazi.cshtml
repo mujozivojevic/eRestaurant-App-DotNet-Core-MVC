@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Prikazi";
+
+    var radnaMjesta = (List<RadnoMjesto>)ViewData["radnaMjesta-kljuc"];
+}
+<h2>Prikaz radnih mjesta</h2>
+<br><br><br>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Opis</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var k in radnaMjesta)
+        {
+        <tr>
+            <td>@k.Naziv</td>
+            <td>@k.Opis</td>
+            <td><a href="/RadnoMjesto/Obrisi?Id= @k.Id">Obriši</a></td>
+        </tr>
+        }
+    </tbody>
+</table>

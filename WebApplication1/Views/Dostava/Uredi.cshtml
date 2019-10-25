@@ -1,0 +1,68 @@
+﻿@using WebApplication1.Models
+@using WebApplication1.EF
+@model Dostava
+@{
+    List<Narudzba> narudzbe = (List<Narudzba>)ViewData["narudzba"];
+
+    List<StatusDostave> statusiDostave = (List<StatusDostave>)ViewData["statusDostave"];
+
+    List<Dostava> dostave = (List<Dostava>)ViewData["dostava"];
+
+    List<Narucilac> narucioci = (List<Narucilac>)ViewData["narucilac"];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Online restoran</title>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <br />
+
+    <form method="post">
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <div class="form-group">
+            <label>Datum slanja</label>
+            <input type="datetime" class="form-control" placeholder="Datum slanja" name="DatumSlanja" value="@Model.Id">
+        </div>
+        <div class="form-group">
+            <label>Datum dostave</label>
+            <input type="datetime" class="form-control" name="DatumDostave" value="@Model.DatumVrijemeDostave">
+        </div>
+        <label>Narucilac</label>
+        <select name="NarudzbaId" class="form-control">
+            @foreach (var item in narudzbe)
+            {
+                <option value=@item.Id>@item.Narucilac.ImePrezime</option>
+            }
+        </select>
+        <br />
+        <label>Status dostave </label>
+        <select name="StatusDostaveId" class="form-control">
+            @foreach (var item in statusiDostave)
+            {
+                <option value=@item.Id>@item.Opis</option>
+            }
+        </select>
+        <br />
+
+        <input type="submit" value="Sumbit formu" />
+
+    </form>
+
+    <hr />
+
+
+</body>
+</html>

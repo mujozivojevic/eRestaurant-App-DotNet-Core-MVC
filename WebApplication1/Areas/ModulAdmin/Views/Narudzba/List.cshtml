@@ -1,0 +1,73 @@
+﻿@model WebApplication1.Areas.ModulAdmin.ViewModels.Narudzba.NarudzbaListVM
+@{
+    ViewData["Title"] = "Narudzbe";
+    int br = 0;
+
+    var porukaDelete = TempData["porukaDelete"] as string;
+
+}
+
+
+
+<div class="row">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Narudzbe</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="datatable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>RB</th>
+                        <th>Ime i prezime</th>
+                        <th>Adresa</th>
+                        <th>Datum narudzbe</th>
+                        <th>Telefon</th>
+                        <th>Status dostave</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ foreach (var n in Model.htmlRows)
+                        {
+                            <tr>
+                                @{
+                                    br++;
+                                }
+                                <td>@br</td>
+                                <td>@n.ImePrezime</td>
+                                <td>@n.Adresa</td>
+                                <td>@n.DatumNarudzbe</td>
+                                <td>@n.Telefon</td>
+                                <td class="text-center">
+                                    @if (n.StatusDostaveId == 1)
+                                    {
+
+                                        <a asp-controller="Narudzba" asp-action="Cekanje" asp-route-id="@n.NarudzbaId" class="btn btn-success btn-xs">@n.StatusDostave</a>
+                                    }
+                                    else
+                                    {
+                                        <a data-ajax="true" data-ajax-method="get" asp-controller="Narudzba" asp-action="Dostavljeno" asp-route-id="@n.NarudzbaId" class="btn btn-warning btn-xs">@n.StatusDostave</a>
+                                    }
+                                </td>
+                                <td class="text-center">
+
+                                    <a class="btn btn-info btn-xs"  ajax-poziv="da" ajax-rezultat="divAjax" asp-controller="Narudzba" asp-action="Detalji" asp-route-id="@n.NarudzbaId"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Detalji</a>
+                                    <a class="btn btn-danger btn-xs" OnClick="confirm('Obrisati narudžbu?')" asp-controller="Narudzba" asp-action="Obrisi" asp-route-id="@n.NarudzbaId"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Obriši</a>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <div  id="divAjax">
+
+    </div>
+</div>
+
+
